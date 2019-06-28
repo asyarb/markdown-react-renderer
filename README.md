@@ -31,9 +31,7 @@ import Link from './Link'
 // Markdown to render as React components
 const markdown = `
   # React
-  
   ## A JavaScript library for building user interfaces.
-  
   [Get started](https://reactjs.org/docs/getting-started.html)
 `
 
