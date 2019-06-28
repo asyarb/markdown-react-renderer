@@ -11,7 +11,8 @@
     "format": "prettier --write 'src/**/*.js' 'rollup.config.js' 'README.md'",
     "prebuild": "rimraf dist",
     "prepublish": "yarn build",
-    "release": "standard-version"
+    "release": "standard-version",
+    "test": "yarn jest"
   },
   "homepage": "https://github.com/asyarb/markdown-react-renderer",
   "repository": {
@@ -29,13 +30,20 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
+    "@testing-library/react": "^8.0.4",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.8.0",
     "eslint": "^5.16.0",
     "husky": "^2.4.0",
+    "jest": "^24.8.0",
+    "jest-dom": "^3.5.0",
     "microbundle": "^0.11.0",
     "prettier": "^1.18.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "rimraf": "^2.6.3",
     "standard-version": "^6.0.1"
   },
