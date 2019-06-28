@@ -63,9 +63,10 @@ const App = () => (
 
 ## API
 
-|  `markdown`  | `string` | Markdown to render.                                                                                          |
+|     Name     | Type     | Description                                                                                                  |
 | :----------: | -------- | ------------------------------------------------------------------------------------------------------------ |
 | `components` | `node`   | An object mapping a valid HTML element type to anything React can render (numbers, strings, elements, etc.). |
+|  `markdown`  | `string` | Markdown to render.                                                                                          |
 
 ## 📝 License
 
