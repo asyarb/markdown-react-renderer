@@ -16,7 +16,62 @@ yarn add markdown-react-renderer
 
 ## Usage
 
-TODO
+Provide a mapping of components to Markdown. The map will take valid HTML tags
+as keys.
+
+```js
+import React from 'react'
+import { Markdown } from 'markdown-react-renderer'
+
+// Components to which elements are mapped
+import Heading from './Heading'
+import Subheading from './Subheading'
+import Link from './Link'
+
+// Markdown to render as React components
+const markdown = `
+  # React
+  
+  ## A JavaScript library for building user interfaces.
+  
+  [Get started](https://reactjs.org/docs/getting-started.html)
+`
+
+// Note that default props can be set using the following pattern:
+//
+//   `props => <Comp foo="bar" {...props} />`
+//
+const App = () => (
+  <Markdown
+    markdown={markdown}
+    components={{
+      h1: props => <Heading color="red" {...props} />,
+      h2: Subheading,
+      a: Link,
+    }}
+  />
+)
+```
+
+`<Markdown>` will render the following:
+
+```js
+<>
+  <Heading color="red">React</Heading>
+  <Subheading>A JavaScript library for building user interfaces.</Subheading>
+  <p>
+    <Link href="https://reactjs.org/docs/getting-started.html">
+      Get started
+    </Link>
+  </p>
+</>
+```
+
+## API
+
+|  `markdown`  | `string` | Markdown to render.                                                                                          |
+| :----------: | -------- | ------------------------------------------------------------------------------------------------------------ |
+| `components` | `node`   | An object mapping a valid HTML element type to anything React can render (numbers, strings, elements, etc.). |
 
 ## 📝 License
 
