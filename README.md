@@ -35,10 +35,6 @@ const markdown = `
   [Get started](https://reactjs.org/docs/getting-started.html)
 `
 
-// Note that default props can be set using the following pattern:
-//
-//   `props => <Comp foo="bar" {...props} />`
-//
 const App = () => (
   <Markdown
     markdown={markdown}
