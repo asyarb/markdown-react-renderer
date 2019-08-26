@@ -28,24 +28,24 @@
   "author": "Anthony Yarbrough",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "@commitlint/cli": "^8.0.0",
-    "@commitlint/config-conventional": "^8.0.0",
-    "@testing-library/react": "^8.0.4",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.8.0",
-    "eslint": "^5.16.0",
-    "husky": "^2.4.0",
-    "jest": "^24.8.0",
-    "jest-dom": "^3.5.0",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@testing-library/jest-dom": "^4.1.0",
+    "@testing-library/react": "^9.1.3",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.2.2",
+    "husky": "^3.0.4",
+    "jest": "^24.9.0",
     "microbundle": "^0.11.0",
     "prettier": "^1.18.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "rimraf": "^2.6.3",
-    "standard-version": "^6.0.1"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "rimraf": "^3.0.0",
+    "standard-version": "^7.0.0"
   },
   "husky": {
     "hooks": {
@@ -58,8 +58,8 @@
     ]
   },
   "dependencies": {
-    "remark": "^10.0.1",
+    "remark": "^11.0.1",
     "remark-breaks": "^1.0.3",
-    "remark-react": "^5.0.1"
+    "remark-react": "^6.0.0"
   }
 }
