@@ -14,17 +14,21 @@ describe('Markdown', () => {
   [Get started](https://reactjs.org/docs/getting-started.html)
   `
 
-  const Heading = () => <h4>HEADING</h4>
-  const Subheading = () => <h6>SUBHEADING</h6>
-  const Link = () => <a href="https://google.com">LINK</a>
+  const Heading = props => <h4 {...props}>HEADING</h4>
+  const Subheading = props => <h6 {...props}>SUBHEADING</h6>
+  const Link = props => (
+    <a href="https://google.com" style={{ color: 'red' }} {...props}>
+      LINK
+    </a>
+  )
 
-  test('renders null if no markdown is provided', () => {
+  it('renders null if no markdown is provided', () => {
     const { container } = render(<Markdown />)
 
     expect(container.firstChild).toBeNull()
   })
 
-  test('renders plain HTML if no components are provided', () => {
+  it('renders plain HTML if no components are provided', () => {
     const { container, getByText } = render(<Markdown markdown={markdown} />)
 
     const heading1 = container.querySelector('h1')
@@ -44,7 +48,7 @@ describe('Markdown', () => {
     expect(container).toContainElement(a)
   })
 
-  test('renders React components from the provided map', () => {
+  it('renders React components from the provided map', () => {
     const { container, getByText } = render(
       <Markdown
         markdown={markdown}
@@ -69,5 +73,31 @@ describe('Markdown', () => {
     expect(container).toContainElement(heading6)
     expect(container).toContainElement(p)
     expect(container).toContainElement(a)
+  })
+
+  it('handles merging component overrides', () => {
+    const { container, getByText, debug } = render(
+      <Markdown
+        markdown={markdown}
+        components={{
+          h1: props => <Heading {...props} />,
+          a: props => <Link {...props} />,
+        }}
+        componentOverrides={{
+          h2: Comp => props => <Comp {...props}>OVERRIDES</Comp>,
+          a: Comp => props => <Comp {...props} href="https://example.com/" />,
+        }}
+      />
+    )
+
+    const h2 = container.querySelector('h2')
+    const a = container.querySelector('a')
+
+    expect(getByText('HEADING')).toBeInTheDocument()
+    expect(getByText('OVERRIDES')).toBeInTheDocument()
+    expect(container).toContainElement(h2)
+    expect(container).toContainElement(a)
+    expect(a).toHaveStyle('color: red')
+    expect(a.href).toBe('https://example.com/')
   })
 })

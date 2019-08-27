@@ -27,6 +27,14 @@
   ],
   "author": "Anthony Yarbrough",
   "license": "MIT",
+  "dependencies": {
+    "remark": "^11.0.1",
+    "remark-breaks": "^1.0.3",
+    "remark-react": "^6.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
@@ -56,10 +64,5 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "dependencies": {
-    "remark": "^11.0.1",
-    "remark-breaks": "^1.0.3",
-    "remark-react": "^6.0.0"
   }
 }
