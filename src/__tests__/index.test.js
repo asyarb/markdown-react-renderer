@@ -76,7 +76,7 @@ describe('Markdown', () => {
   })
 
   it('handles merging component overrides', () => {
-    const { container, getByText, debug } = render(
+    const { container, getByText } = render(
       <Markdown
         markdown={markdown}
         components={{
