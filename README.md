@@ -68,7 +68,7 @@ prop as needed. This can be utilized to create a reusable `MarkdownRenderer`
 with a default set of components throughout your project.
 
 ```jsx
-// src/components/HTML.js
+// src/components/Markdown.js
 
 import { Heading, Subheading, Link } from 'src/components'
 
