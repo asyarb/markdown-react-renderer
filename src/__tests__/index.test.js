@@ -3,7 +3,7 @@ import React from 'react'
 import { render, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-import { Markdown } from '../index'
+import { MarkdownRenderer } from '../index'
 
 afterEach(cleanup)
 
@@ -23,13 +23,15 @@ describe('Markdown', () => {
   )
 
   it('renders null if no markdown is provided', () => {
-    const { container } = render(<Markdown />)
+    const { container } = render(<MarkdownRenderer />)
 
     expect(container.firstChild).toBeNull()
   })
 
   it('renders plain HTML if no components are provided', () => {
-    const { container, getByText } = render(<Markdown markdown={markdown} />)
+    const { container, getByText } = render(
+      <MarkdownRenderer markdown={markdown} />
+    )
 
     const heading1 = container.querySelector('h1')
     const heading2 = container.querySelector('h2')
@@ -50,7 +52,7 @@ describe('Markdown', () => {
 
   it('renders React components from the provided map', () => {
     const { container, getByText } = render(
-      <Markdown
+      <MarkdownRenderer
         markdown={markdown}
         components={{
           h1: props => <Heading {...props} />,
@@ -77,7 +79,7 @@ describe('Markdown', () => {
 
   it('handles merging component overrides', () => {
     const { container, getByText } = render(
-      <Markdown
+      <MarkdownRenderer
         markdown={markdown}
         components={{
           h1: props => <Heading {...props} />,

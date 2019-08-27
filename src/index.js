@@ -3,7 +3,11 @@ import remark from 'remark'
 import remarkBreaks from 'remark-breaks'
 import remarkReact from 'remark-react'
 
-export const Markdown = ({ markdown, components = {}, componentOverrides }) => {
+export const MarkdownRenderer = ({
+  markdown,
+  components = {},
+  componentOverrides,
+}) => {
   const resolvedComponents = componentOverrides
     ? Object.keys(componentOverrides).reduce((acc, key) => {
         const Comp =
@@ -22,3 +26,5 @@ export const Markdown = ({ markdown, components = {}, componentOverrides }) => {
     .use(remarkBreaks)
     .processSync(markdown).contents
 }
+
+export default MarkdownRenderer

@@ -16,12 +16,12 @@ yarn add markdown-react-renderer
 
 ## Usage
 
-Provide a mapping of components to Markdown. The map will take valid HTML tags
-as keys.
+Provide a map of components to Markdown. The map will take valid HTML tags as
+keys.
 
 ```js
 import React from 'react'
-import { Markdown } from 'markdown-react-renderer'
+import { MarkdownRenderer } from 'markdown-react-renderer'
 
 // Components to which elements are mapped
 import Heading from './Heading'
@@ -36,7 +36,7 @@ const markdown = `
 `
 
 const App = () => (
-  <Markdown
+  <MarkdownRenderer
     markdown={markdown}
     components={{
       h1: props => <Heading color="red" {...props} />,
@@ -47,7 +47,7 @@ const App = () => (
 )
 ```
 
-`<Markdown>` will render the following:
+`<MarkdownRenderer>` will render the following:
 
 ```js
 <>
@@ -61,16 +61,80 @@ const App = () => (
 </>
 ```
 
-## API
+## Component overrides
 
-|     Name     | Type     | Description                                                                                                  |
-| :----------: | -------- | ------------------------------------------------------------------------------------------------------------ |
-| `components` | `node`   | An object mapping a valid HTML element type to anything React can render (numbers, strings, elements, etc.). |
-|  `markdown`  | `string` | Markdown to render.                                                                                          |
+`MarkdownRenderer` supports overriding components provided in the `components`
+prop as needed. This can be utilized to create a reusable `MarkdownRenderer`
+with a default set of components throughout your project.
+
+```jsx
+// src/components/HTML.js
+
+import { Heading, Subheading, Link } from 'src/components'
+
+export const Markdown = props => (
+  <MarkdownRenderer
+    components={{
+      h1: props => <Heading color="red" {...props} />,
+    }}
+    {...props}
+  />
+)
+```
+
+The `Markdown` component could be used by passing it a Markdown string.
+
+```js
+// src/pages/index.js
+
+import { Markdown } from 'src/components'
+
+export const IndexPage = ({ markdown }) => <Markdown markdown={markdown} />
+```
+
+This will render `H1` elements with **red text**.
+
+If individual components need to be overridden, you can provide a mapping using
+the `componentOverrides` prop.
+
+```js
+// src/pages/index.js
+
+import { Markdown } from 'src/components'
+
+export const IndexPage = ({ markdown }) => (
+  <Markdown
+    markdown={markdown}
+    componentOverrides={{
+      h1: Comp => props => <Comp {...props} color="blue" />,
+    }}
+  />
+)
+```
+
+This will render `H1` elements with **blue text**.
+
+Note that `Comp` is the `Heading` component defined in the original `components`
+prop. This allows you to keep the existing component and modify it as needed.
+Alternatively, you could disregard `Comp` and return a completely different
+component.
+
+## Props
+
+| Name                 | Type     | Description                                                                                                                                  |
+| -------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `markdown`           | `string` | Markdown to render.                                                                                                                          |
+| `components`         | `node`   | An object mapping a valid HTML element type to anything React can render (numbers, strings, elements, etc.).                                 |
+| `componentOverrides` | `node`   | An object mapping an HTML element type to a function that returns another React can render. See [Component overrides](#component-overrides). |
+
+## Similar packages
+
+- [react-html-renderer][react-html-renderer]
+
+[react-html-renderer]: https://github.com/angeloashmore/react-html-renderer
 
 ## 📝 License
 
-Copyright © 2019 [Anthony Yarbrough](https://github.com/asyarb).<br /> This
-project is
+This project is
 [MIT](https://github.com/asyarb/markdown-react-renderer/blob/master/LICENSE)
 licensed.
