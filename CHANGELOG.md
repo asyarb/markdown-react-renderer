@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/asyarb/markdown-react-renderer/compare/v2.0.0...v2.0.1) (2019-09-09)
+
+
+### Bug Fixes
+
+* overrides no longer affect other renderers ([bcd4d0e](https://github.com/asyarb/markdown-react-renderer/commit/bcd4d0e))
+
 ## [2.0.0](https://github.com/asyarb/markdown-react-renderer/compare/v1.1.0...v2.0.0) (2019-08-27)
 
 

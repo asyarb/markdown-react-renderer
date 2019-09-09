@@ -1,6 +1,6 @@
 {
   "name": "markdown-react-renderer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
   "main": "dist/index.js",
   "modern": "dist/index.m.js",
