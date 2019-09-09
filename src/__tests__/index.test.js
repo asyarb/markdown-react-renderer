@@ -102,4 +102,41 @@ describe('Markdown', () => {
     expect(a).toHaveStyle('color: red')
     expect(a.href).toBe('https://example.com/')
   })
+
+  it('overrides do not affect other MarkdownRenderers', () => {
+    const components = {
+      h1: props => <Heading {...props} />,
+      a: props => <Link {...props} />,
+    }
+
+    const { container, getByText } = render(
+      <>
+        <MarkdownRenderer
+          markdown={markdown}
+          components={components}
+          componentOverrides={{
+            h2: Comp => props => <Comp {...props}>OVERRIDES</Comp>,
+            a: Comp => props => <Comp {...props} href="https://example.com/" />,
+          }}
+        />
+        <MarkdownRenderer
+          markdown={markdown}
+          components={components}
+          componentOverrides={{
+            h2: Comp => props => <h4 {...props}>DIFFERENT</h4>,
+          }}
+        />
+      </>
+    )
+
+    const h2 = container.querySelector('h2')
+    const h4 = container.querySelector('h4')
+    const a = container.querySelector('a')
+
+    expect(getByText('OVERRIDES')).toBeInTheDocument()
+    expect(getByText('DIFFERENT')).toBeInTheDocument()
+    expect(container).toContainElement(h2)
+    expect(container).toContainElement(a)
+    expect(container).toContainElement(h4)
+  })
 })

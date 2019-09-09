@@ -17,7 +17,7 @@ export const MarkdownRenderer = ({
 
         return acc
       }, components)
-    : components
+    : { ...components }
 
   return remark()
     .use(remarkReact, {
