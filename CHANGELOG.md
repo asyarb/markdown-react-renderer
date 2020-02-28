@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/asyarb/markdown-react-renderer/compare/v2.0.1...v2.1.0) (2020-02-28)
+
+
+### Bug Fixes
+
+* git ignore yarn errors ([2fd6954](https://github.com/asyarb/markdown-react-renderer/commit/2fd6954))
+
+
+### Features
+
+* add breaks prop ([8e274b0](https://github.com/asyarb/markdown-react-renderer/commit/8e274b0))
+
 ### [2.0.1](https://github.com/asyarb/markdown-react-renderer/compare/v2.0.0...v2.0.1) (2019-09-09)
 
 
