@@ -10,7 +10,12 @@ afterEach(cleanup)
 describe('Markdown', () => {
   const markdown = `
   # React
+
   ## A JavaScript library for interfaces.
+
+  A paragraph
+  with a break
+
   [Get started](https://reactjs.org/docs/getting-started.html)
   `
 
@@ -75,6 +80,33 @@ describe('Markdown', () => {
     expect(container).toContainElement(heading6)
     expect(container).toContainElement(p)
     expect(container).toContainElement(a)
+  })
+
+  it('supports toggling breaks support', () => {
+    const { getByText } = render(<MarkdownRenderer markdown={markdown} />)
+
+    expect(getByText('A paragraph with a break')).toMatchInlineSnapshot(`
+      <p>
+          A paragraph
+        <br />
+        
+
+        with a break
+      </p>
+    `)
+
+    cleanup()
+
+    const { getByText: getByText2 } = render(
+      <MarkdownRenderer markdown={markdown} breaks={false} />
+    )
+
+    expect(getByText2('A paragraph with a break')).toMatchInlineSnapshot(`
+      <p>
+          A paragraph
+      with a break
+      </p>
+    `)
   })
 
   it('handles merging component overrides', () => {
