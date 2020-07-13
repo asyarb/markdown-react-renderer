@@ -55,7 +55,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "rimraf": "^3.0.0",
-    "standard-version": "^7.0.0"
+    "standard-version": "^8.0.1"
   },
   "husky": {
     "hooks": {
